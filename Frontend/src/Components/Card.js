@@ -12,6 +12,7 @@ import Stack from "@mui/material/Stack";
 import { deepOrange, deepPurple, pink } from "@mui/material/colors";
 
 export default function MediaCard() {
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -32,7 +33,7 @@ export default function MediaCard() {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button sx={{ bgcolor: deepPurple[500] }} variant="text">
+        <Button className="joinButton" variant="outlined">
           Join
         </Button>
         <div className="Avatar">
