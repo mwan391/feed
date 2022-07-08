@@ -2,7 +2,7 @@
 import { Routes, Route } from "react-router-dom";
 import SignIn from './pages/signIn';
 import Home from './pages/home';
-import Navbar from './Components/Navbar';
+import Navbar from './components/Navbar';
 
 function App() {
 	return (
