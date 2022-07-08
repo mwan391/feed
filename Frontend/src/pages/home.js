@@ -1,7 +1,17 @@
+import * as React from "react";
+import ReactDOM from "react-dom/client";
+import MediaCard from "../Components/tempCard";
+import "./home.css"
 
 function Home() {
 	return (
-        <p>Home</p>
+        <div className="cardGrid">
+            <MediaCard/>
+            <MediaCard/>
+            <MediaCard/>
+            <MediaCard/>
+        </div>
+        
 	);
   }
 
