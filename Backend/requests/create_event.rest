@@ -1,0 +1,11 @@
+POST http://localhost:3001/api/events
+Content-Type: application/json
+
+{
+    "name": "Davos",
+    "likes": "111",
+	"creator": "62c8c4e1f9a1e0fa52f6540b",
+    "userId": "62c8c4e1f9a1e0fa52f6540b",
+	"description": "lets celebrate friday at Denny's!"
+}
+
