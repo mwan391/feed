@@ -1,13 +1,8 @@
-<<<<<<< HEAD
-import React from "react";
-import CardGrid from "../components/CardGrid";
-=======
 import React from 'react';
 import "./home.css"
 import CardGrid from '../components/CardGrid';
 import { Card } from '@mui/material';
 import FormPropsTextFields from '../components/formPropsTextFields';
->>>>>>> main
 
 function Home() {
   return (
