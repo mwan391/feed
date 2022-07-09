@@ -10,14 +10,14 @@ import CheckboxListSecondary from './pages/coffee';
 
 function App() {
   const [user, setUser] = useState(null);
-  const [loggedIn, setLoggedIn] = useState(false);
-
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    loggedIn || navigate('/');
-  }, [loggedIn, location.pathname]);
+    if (!window.localStorage.loggedBeepUser) {
+      navigate('/signin');
+    }
+  }, [window.localStorage.loggedBeepUser, location.pathname]);
 
   const handleLogin = async (username, password) => {
     try {
@@ -27,9 +27,9 @@ function App() {
       });
 
       window.localStorage.setItem('loggedBeepUser', JSON.stringify(user));
+      console.log(window.localStorage);
       personService.setToken(user.token);
       setUser(user);
-      setLoggedIn(true);
       navigate('/home');
     } catch (exception) {
       console.log('Wrong username or password');
@@ -38,10 +38,14 @@ function App() {
 
   return (
     <div className="App pt-[4rem]">
-      <UserContext.Provider value={{ user, loggedIn }}>
-        {loggedIn && <Navbar setLoggedIn={setLoggedIn} setUser={setUser} />}
+      <UserContext.Provider value={{ user }}>
+        {window.localStorage.loggedBeepUser && <Navbar setUser={setUser} />}
         <Routes>
-          <Route path="/" element={<SignIn handleSubmit={handleLogin} />} />
+          <Route path="/" element={<></>} />
+          <Route
+            path="/signin"
+            element={<SignIn handleSubmit={handleLogin} />}
+          />
           <Route path="/home" element={<Home />} />
           <Route path="/coffee" element={<CheckboxListSecondary />} />
         </Routes>
