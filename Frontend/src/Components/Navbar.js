@@ -53,23 +53,16 @@ function Navbar() {
               id="dropdownNavbar"
               className={`z-10 ${
                 dropdownClicked ? 'visible' : 'hidden'
-              } bg-white divide-y divide-gray-100 rounded shadow fixed top-[3rem] w-[8rem]`}
+              } bg-white divide-gray-100 rounded shadow fixed top-[3rem] w-[8rem] text-left`}
             >
-              <ul className="py-1 text-sm text-gray-700 px-2">
-                <li>
-                  <p>Test</p>
+              <ul className="text-sm text-gray-700">
+                <li className="py-3 px-4">
+                  <button className="hover:text-gray-400">Edit Profile</button>
                 </li>
-                <li>
-                  <p>Test</p>
-                </li>
-                <li>
-                  <p>Test</p>
+                <li className="py-3 px-4 border-t">
+                  <button className="hover:text-gray-400">Log Out</button>
                 </li>
               </ul>
-              <ul className="py-1 text-sm text-gray-700">
-                <li>Log Out</li>
-              </ul>
-              <div className="py-1"></div>
             </div>
           </div>
         </div>
