@@ -19,10 +19,10 @@ export default function MediaCard({
   const { user } = React.useContext(UserContext);
 
   const hasJoined =
-    people.filter((person) => person.username === user.username).length > 0;
+    people.filter((person) => person?.username === user?.username).length > 0;
 
   return (
-    <div className="m-4 2xl:m-10 rounded-xl shadow-lg">
+    <div className="m-4 2xl:m-10 rounded-xl shadow-lg h-full">
       <Card sx={{ maxWidth: 345, borderRadius: '0.75rem', boxShadow: 0 }}>
         <CardMedia
           component="img"
@@ -30,7 +30,7 @@ export default function MediaCard({
           image="https://www.qthotels.com/auckland/wp-content/uploads/sites/115/2020/10/Esther-Restaurant-QTA-1800x1120.jpg"
           alt="green iguana"
         />
-        <div className="p-3">
+        <div className="p-3 flex flex-col self-end">
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               {name}

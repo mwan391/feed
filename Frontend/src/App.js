@@ -38,7 +38,7 @@ function App() {
   };
 
   return (
-    <div className="App pt-[4rem]">
+    <div className="App py-[4rem] bg-stone-100 min-h-screen">
       <UserContext.Provider value={{ user }}>
         {window.localStorage.loggedBeepUser && (
           <Navbar setUser={setUser} user={user} />
