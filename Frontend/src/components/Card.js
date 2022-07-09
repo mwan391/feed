@@ -1,22 +1,22 @@
-import * as React from "react";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import GoogleMaps from "../images/GoogleMaps.webp"; // hardcoded
-import BeepAvatar from "./Avatar";
-import AvatarGroup from "@mui/material/AvatarGroup";
-import Stack from "@mui/material/Stack";
-import { deepOrange, deepPurple, pink } from "@mui/material/colors";
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import GoogleMaps from '../images/GoogleMaps.webp'; // hardcoded
+import BeepAvatar from './Avatar';
+import AvatarGroup from '@mui/material/AvatarGroup';
+import Stack from '@mui/material/Stack';
 
-import { UserContext } from "../utils/UserContext";
+import { UserContext } from '../utils/UserContext';
 
 export default function MediaCard({
   currentEvent: { name, creator, date, people, description },
 }) {
   const { user } = React.useContext(UserContext);
+  const dateType = new Date(date);
 
   const hasJoined =
     people.filter((person) => person?.username === user?.username).length > 0;
@@ -30,7 +30,7 @@ export default function MediaCard({
       hash = string.charCodeAt(i) + ((hash << 5) - hash);
     }
 
-    let color = "#";
+    let color = '#';
 
     for (i = 0; i < 3; i += 1) {
       const value = (hash >> (i * 8)) & 0xff;
@@ -46,7 +46,7 @@ export default function MediaCard({
       sx: {
         bgcolor: stringToColor(name),
       },
-      children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
+      children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
     };
   }
 
@@ -68,7 +68,10 @@ export default function MediaCard({
               {creator}
             </Typography>
             <Typography gutterBottom variant="h5" component="div">
-              {date}
+              {date &&
+                `${dateType.getDate()}/${dateType.getMonth()}/${dateType.getFullYear()} ${(
+                  '00' + dateType.getHours()
+                ).slice(-2)}:00`}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               {description}
@@ -78,11 +81,11 @@ export default function MediaCard({
             <div className="flex justify-between w-full px-2">
               <button
                 className={`${
-                  hasJoined ? "bg-red-500" : "bg-blue-500"
+                  hasJoined ? 'bg-red-500' : 'bg-blue-500'
                 } text-white py-2 px-3 rounded-md shadow-lg font-bold hover:bg-opacity-90`}
                 variant="outlined"
               >
-                {hasJoined ? "Leave" : "Join"}
+                {hasJoined ? 'Leave' : 'Join'}
               </button>
               <div>
                 <AvatarGroup max={3}>
