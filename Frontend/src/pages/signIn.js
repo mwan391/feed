@@ -8,22 +8,33 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import { useState } from 'react'
+
+
 const theme = createTheme();
 
-export default function SignIn() {
-  const handleSubmit = (event) => {
+export default function SignIn(props) {
+
+  const submitLogin = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
+    props.handleSumbit(username, password)
+    setUsername('')
+    setPassword('')
+
   };
+
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
 
   return (
     <ThemeProvider theme={theme}>
@@ -40,7 +51,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={submitLogin} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -50,6 +61,10 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={username}
+              type="text"
+              onChange={({ target }) => setUsername(target.value)}
+
             />
             <TextField
               margin="normal"
@@ -60,6 +75,8 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={({ target }) => setPassword(target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
