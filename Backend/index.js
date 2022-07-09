@@ -25,6 +25,17 @@ app.use(cors())
 app.use(express.json())
 // app.use("/api", routes);
 
+
+
+const getTokenFrom = request => {
+  const authorization = request.get('authorization')
+  if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
+    return authorization.substring(7)
+  }
+  return null
+}
+
+
 app.get('/', (request, response) => {
   response.send('<h1>Team Beep</h1>')
 })
@@ -67,18 +78,32 @@ app.post('/api/persons', async (req, res) => {
 })
 
 
-app.post('/api/events', (req, res) => {
-  const body = req.body
+app.post('/api/events', async (request, response) => {
+const { name, date, people, description,  } = request.body
+
+  const token = getTokenFrom(request)
+  const decodedToken = jwt.verify(token, process.env.SECRET)
+  if (!token || !decodedToken.id) {
+    return response.status(401).json({ error: 'token missing or invalid' })
+  }
+
+  const user = await Person.findById(decodedToken.id)
+  
+  
+
   const event = new Event({
-    name: body.name,
-    date: body.date,
-    people: body.people,
-    description: body.description
+    name,
+    date,
+    people: [].concat(user._id),
+    description,
+    creator: user._id
   })
 
-  event.save().then(savedEvent => {
-    res.json(savedEvent)
-  })
+  const savedEvent = await event.save()
+  user.events = user.events.concat(savedEvent._id)
+  await user.save()
+
+  response.status(201).json(savedEvent)
 })
 
 app.put('/:id', async (request, response) => {

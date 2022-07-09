@@ -1,8 +1,14 @@
 import mongoose from "mongoose"
 
 const personSchema = new mongoose.Schema({
-	name: String,
-	username: String,
+	name: {
+		type: String,
+		required: true,
+	},
+	username: {
+		type: String,
+		required: true,
+	},
 	passwordHash: String,
 	location: String,
 	coffee: Boolean,
