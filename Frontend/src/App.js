@@ -3,10 +3,10 @@ import SignIn from './pages/signIn';
 import Home from './pages/home';
 import Navbar from './components/Navbar';
 import { useState } from 'react';
-
 import { UserContext } from './utils/UserContext';
 import personService from './services/persons';
 import loginService from './services/login';
+import CheckboxListSecondary from './pages/coffee';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -37,9 +37,9 @@ function App() {
             element={<SignIn handleSumbit={handleLogin} />}
           />
           <Route path="/home" element={<Home />} />
+          <Route path="/coffee" element={<CheckboxListSecondary  />} />
         </Routes>
       </UserContext.Provider>
->>>>>>> main
     </div>
   );
 }
