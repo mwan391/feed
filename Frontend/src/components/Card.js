@@ -1,24 +1,28 @@
-import * as React from "react";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import GoogleMaps from "../images/GoogleMaps.webp"; // hardcoded
-import BeepAvatar from "./BeepAvatar";
-import AvatarGroup from "@mui/material/AvatarGroup";
-import Stack from "@mui/material/Stack";
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import GoogleMaps from '../images/GoogleMaps.webp'; // hardcoded
+import BeepAvatar from './BeepAvatar';
+import AvatarGroup from '@mui/material/AvatarGroup';
+import Stack from '@mui/material/Stack';
 
-import { UserContext } from "../utils/UserContext";
+import { UserContext } from '../utils/UserContext';
 
 export default function MediaCard({
-  currentEvent, currentEvent: { name, creator, date, people, description },
+  currentEvent,
+  currentEvent: { name, creator, date, people, description },
 }) {
   const { user } = React.useContext(UserContext);
   const dateType = new Date(date);
+  const [hasJoined, setHasJoined] = React.useState(false);
 
-  const hasJoined = people.includes(user.name);
+  React.useEffect(() => {
+    setHasJoined(people.includes(user.name));
+  }, [people, user]);
 
   function stringToColor(string) {
     let hash = 0;
@@ -29,7 +33,7 @@ export default function MediaCard({
       hash = string.charCodeAt(i) + ((hash << 5) - hash);
     }
 
-    let color = "#";
+    let color = '#';
 
     for (i = 0; i < 3; i += 1) {
       const value = (hash >> (i * 8)) & 0xff;
@@ -45,13 +49,16 @@ export default function MediaCard({
       sx: {
         bgcolor: stringToColor(name1),
       },
-      children: `${name1.split(" ")[0][0]}${name1.split(" ")[1][0]}`,
+      children: `${name1.split(' ')[0][0]}${name1.split(' ')[1][0]}`,
     };
   }
 
+  console.log(people);
+  console.log(user.name);
+  console.log(hasJoined);
   return (
     <div className="m-4 2xl:m-10 rounded-xl shadow-lg h-full">
-      <Card sx={{ maxWidth: 345, borderRadius: "0.75rem", boxShadow: 0 }}>
+      <Card sx={{ maxWidth: 345, borderRadius: '0.75rem', boxShadow: 0 }}>
         <CardMedia
           component="img"
           height="140"
@@ -65,9 +72,10 @@ export default function MediaCard({
             </Typography>
             <Typography gutterBottom variant="h5" component="div"></Typography>
             <Typography gutterBottom variant="h5" component="div">
-              {dateType.toDateString()}
+              {dateType?.toDateString()}
               <br />
-              {dateType.getHours()}:{dateType.getMinutes()}
+              {('00' + dateType?.getHours()).slice(-2)}:
+              {('00' + dateType?.getMinutes()).slice(-2)}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               {description}
@@ -77,19 +85,17 @@ export default function MediaCard({
             <div className="flex justify-between w-full px-2">
               <button
                 className={`${
-                  hasJoined ? "bg-red-500" : "bg-blue-500"
+                  hasJoined ? 'bg-red-500' : 'bg-blue-500'
                 } text-white py-2 px-3 rounded-md shadow-lg font-bold hover:bg-opacity-90`}
                 variant="outlined"
               >
-                {hasJoined ? "Leave" : "Join"}
+                {hasJoined ? 'Leave' : 'Join'}
               </button>
               <div>
                 <AvatarGroup max={3}>
-
-                  {people?.map((name) => (
-                    <BeepAvatar {...stringAvatar(name)} />
-                  ))}
-
+                  {/* {people?.map((person) => (
+                    <BeepAvatar {...stringAvatar(person)} />
+                  ))} */}
                 </AvatarGroup>
               </div>
             </div>
