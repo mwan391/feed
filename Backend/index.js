@@ -77,7 +77,7 @@ app.post('/api/events', (req, res) => {
   })
 
   event.save().then(savedEvent => {
-    response.json(savedEvent)
+    res.json(savedEvent)
   })
 })
 
