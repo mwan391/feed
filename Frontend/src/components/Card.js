@@ -65,10 +65,9 @@ export default function MediaCard({
             </Typography>
             <Typography gutterBottom variant="h5" component="div"></Typography>
             <Typography gutterBottom variant="h5" component="div">
-              {date &&
-                `${dateType.getDate()}/${dateType.getMonth()}/${dateType.getFullYear()} ${(
-                  '00' + dateType.getHours()
-                ).slice(-2)}:00`}
+              {dateType.toDateString()}
+              <br />
+              {dateType.getHours()}:{dateType.getMinutes()}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               {description}
