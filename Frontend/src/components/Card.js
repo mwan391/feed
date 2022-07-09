@@ -13,13 +13,12 @@ import Stack from "@mui/material/Stack";
 import { UserContext } from "../utils/UserContext";
 
 export default function MediaCard({
-  currentEvent: { name, creator, date, people, description },
+  currentEvent, currentEvent: { name, creator, date, people, description },
 }) {
   const { user } = React.useContext(UserContext);
   const dateType = new Date(date);
 
-  const hasJoined =
-    people?.filter((person) => person?.username === user?.username).length > 0;
+  const hasJoined = people.includes(user.name);
 
   function stringToColor(string) {
     let hash = 0;
@@ -41,10 +40,10 @@ export default function MediaCard({
     return color;
   }
 
-  function stringAvatar(name) {
+  function stringAvatar(name1) {
     return {
       sx: {
-        bgcolor: stringToColor(name),
+        bgcolor: stringToColor(name1),
       },
       children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
     };
@@ -64,14 +63,11 @@ export default function MediaCard({
             <Typography gutterBottom variant="h5" component="div">
               {name}
             </Typography>
+            <Typography gutterBottom variant="h5" component="div"></Typography>
             <Typography gutterBottom variant="h5" component="div">
-              {creator}
-            </Typography>
-            <Typography gutterBottom variant="h5" component="div">
-              {date &&
-                `${dateType.getDate()}/${dateType.getMonth()}/${dateType.getFullYear()} ${(
-                  "00" + dateType.getHours()
-                ).slice(-2)}:00`}
+              {dateType.toDateString()}
+              <br />
+              {dateType.getHours()}:{dateType.getMinutes()}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               {description}
@@ -89,10 +85,9 @@ export default function MediaCard({
               </button>
               <div>
                 <AvatarGroup max={3}>
-                  {people?.map((person) => {
-                    return <BeepAvatar {...stringAvatar(person)} />;
-                  })}
-                  <BeepAvatar {...stringAvatar("Dami Oh")} />
+                  {people?.map((name) => (
+                    <BeepAvatar {...stringAvatar(name)} />
+                  ))}
                 </AvatarGroup>
               </div>
             </div>
