@@ -5,7 +5,6 @@ function Home() {
   return (
     <div>
       <CardGrid />
-      <p>Home</p>
     </div>
   );
 }
