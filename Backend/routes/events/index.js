@@ -1,7 +1,7 @@
 import { Router } from "express";
 import Event from "../../models/events.js"
+import Person from "../../models/person.js"
 import jwt from 'jsonwebtoken'
-
 
 
 const router = Router()
