@@ -14,11 +14,23 @@ function CardGrid() {
   );
 
   return (
-    <div class="container mx-auto px-8 xl:px-12 mt-8">
-      <div class="flex flex-wrap -mx-1 lg:-mx-4 justify-between px-10 2xl:px-20">
-        {events.map((currentEvent) => (
-          <MediaCard currentEvent={currentEvent} />
-        ))}
+    <div className="container mx-auto px-8 xl:px-12 mt-8">
+      <div className="flex flex-wrap -mx-1 lg:-mx-4 justify-between px-10 2xl:px-20">
+        {events
+          .sort((a, b) => {
+            const aDate = new Date(a.date);
+            const bDate = new Date(b.date);
+            if (aDate < bDate) {
+              return -1;
+            }
+            if (aDate > bDate) {
+              return 1;
+            }
+            return 0;
+          })
+          .map((currentEvent) => (
+            <MediaCard currentEvent={currentEvent} key={currentEvent.id} />
+          ))}
       </div>
     </div>
   );

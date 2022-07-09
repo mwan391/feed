@@ -41,7 +41,7 @@ app.get('/', (request, response) => {
 })
 
 app.get('/api/persons', async (request, response) => {
-  const users = await Person.find({}).populate('events', { name: 1, description: 1, people: 1, creator: 1})
+  const users = await Person.find({}).populate('events', { name: 1, description: 1, people: 1, creator: 1 })
   response.json(users)
 })
 
@@ -53,7 +53,7 @@ app.get('/api/events', (req, res) => {
 })
 
 app.post('/api/persons', async (req, res) => {
-  const { username, name, password } = req.body
+  const { username, name, password, quote, coffee } = req.body
 
   // invalid username (same username)
   const existingUser = await Person.findOne({ username })
@@ -70,7 +70,9 @@ app.post('/api/persons', async (req, res) => {
   const person = new Person({
     username,
     name,
+    quote,
     passwordHash,
+    coffee: coffee ? coffee : false
   })
 
   const savedPerson = await person.save()
@@ -79,7 +81,7 @@ app.post('/api/persons', async (req, res) => {
 
 
 app.post('/api/events', async (request, response) => {
-const { name, date, people, description,  } = request.body
+  const { name, date, people, description, } = request.body
 
   const token = getTokenFrom(request)
   const decodedToken = jwt.verify(token, process.env.SECRET)
@@ -104,18 +106,6 @@ const { name, date, people, description,  } = request.body
   response.status(201).json(savedEvent)
 })
 
-app.put('/:id', async (request, response) => {
-
-  const body = request.body
-
-  const person = {
-    name: body.name,
-    location: body.location,
-  }
-  const updatedPerson = await Blog.findByIdAndUpdate(request.params.id, person, { new: true })
-  response.json(updatedPerson)
-})
-
 
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
@@ -133,6 +123,7 @@ app.post('/api/login', async (request, response) => {
       error: 'invalid username or password'
     })
   }
+
 
   const userForToken = {
     username: user.username,

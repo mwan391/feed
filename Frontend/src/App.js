@@ -2,7 +2,7 @@ import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import SignIn from './pages/signIn';
 import Home from './pages/home';
 import Navbar from './components/Navbar';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { UserContext } from './utils/UserContext';
 import personService from './services/persons';
 import loginService from './services/login';
@@ -14,8 +14,25 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  useMemo(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedBeepUser');
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON);
+      setUser(user);
+      if (user) {
+        console.log('user exists');
+      }
+      personService.setToken(user.token);
+    } else {
+      console.log('fail');
+    }
+  }, []);
+
   useEffect(() => {
-    if (!window.localStorage.loggedBeepUser) {
+    if (
+      !window.localStorage.loggedBeepUser &&
+      location.pathname !== '/register'
+    ) {
       navigate('/signin');
     }
   }, [window.localStorage.loggedBeepUser, location.pathname]);
