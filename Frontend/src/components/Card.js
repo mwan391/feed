@@ -1,14 +1,16 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import GoogleMaps from '../images/GoogleMaps.webp'; // hardcoded
-import BeepAvatar from './BeepAvatar';
-import AvatarGroup from '@mui/material/AvatarGroup';
-import Stack from '@mui/material/Stack';
+
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import GoogleMaps from "../images/GoogleMaps.webp"; // hardcoded
+import BeepAvatar from "./Avatar";
+import AvatarGroup from "@mui/material/AvatarGroup";
+import Stack from "@mui/material/Stack";
+
 
 import { UserContext } from '../utils/UserContext';
 
@@ -49,13 +51,10 @@ export default function MediaCard({
       sx: {
         bgcolor: stringToColor(name1),
       },
-      children: `${name1.split(' ')[0][0]}${name1.split(' ')[1][0]}`,
+      children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
     };
   }
 
-  console.log(people);
-  console.log(user.name);
-  console.log(hasJoined);
   return (
     <div className="m-4 2xl:m-10 rounded-xl shadow-lg h-full">
       <Card sx={{ maxWidth: 345, borderRadius: '0.75rem', boxShadow: 0 }}>
@@ -93,9 +92,11 @@ export default function MediaCard({
               </button>
               <div>
                 <AvatarGroup max={3}>
-                  {/* {people?.map((person) => (
-                    <BeepAvatar {...stringAvatar(person)} />
-                  ))} */}
+
+                  {people?.map((name) => (
+                    <BeepAvatar {...stringAvatar(name)} />
+                  ))}
+
                 </AvatarGroup>
               </div>
             </div>
