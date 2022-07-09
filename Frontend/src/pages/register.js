@@ -1,18 +1,18 @@
-import * as React from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { ReactComponent as Logo } from '../images/knifefork.svg';
+import * as React from "react";
+import { useNavigate, Link } from "react-router-dom";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ReactComponent as Logo } from "../images/knifefork.svg";
 
-import { useState } from 'react';
+import { useState } from "react";
 
 const theme = createTheme();
 
@@ -22,18 +22,18 @@ export default function Register(props) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    var axios = require('axios');
+    var axios = require("axios");
     var fetchData = JSON.stringify({
-      username: data.get('email'),
-      name: data.get('name'),
-      password: data.get('password'),
+      username: data.get("email"),
+      name: data.get("name"),
+      password: data.get("password"),
     });
 
     var config = {
-      method: 'post',
-      url: 'http://localhost:3001/api/persons',
+      method: "post",
+      url: "http://localhost:3001/api/persons",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       data: fetchData,
     };
@@ -41,19 +41,19 @@ export default function Register(props) {
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
-        setUsername('');
-        setName('');
-        setPassword('');
-        navigate('/');
+        setUsername("");
+        setName("");
+        setPassword("");
+        navigate("/");
       })
       .catch(function (error) {
         console.log(error);
       });
   };
 
-  const [username, setUsername] = useState('');
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <ThemeProvider theme={theme}>
@@ -62,13 +62,13 @@ export default function Register(props) {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
           <Logo className="stroke-blue-400 w-[10rem] -mt-10" />
-          <h1 className="mb-10 mt-2 font-bold text-6xl text-blue-400">beep</h1>
+          <h1 className="Logo mb-10 mt-2 font-bold text-6xl text-blue-400">feed</h1>
           <Typography component="h1" variant="h5">
             Register
           </Typography>
@@ -142,7 +142,7 @@ export default function Register(props) {
                   to="/signin"
                   variant="body2"
                 >
-                  {'Already have an account? Sign In'}
+                  {"Already have an account? Sign In"}
                 </Link>
               </Grid>
             </Grid>

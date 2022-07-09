@@ -28,8 +28,8 @@ function Navbar({ user, setUser }) {
           to="/home"
         >
           <Logo className="w-10 mr-2" />
-          <h1 className="text-2xl inline-flex font-semibold whitespace-nowrap my-auto">
-            Beep
+          <h1 className="Logo text-2xl inline-flex font-semibold whitespace-nowrap my-auto">
+            feed
           </h1>
         </Link>
         <div className="flex justify-between w-full font-bold ml-8">
