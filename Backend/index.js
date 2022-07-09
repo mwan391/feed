@@ -10,10 +10,10 @@ const PORT = 3001
 mongoose.connect(url).then(result => {
   console.log('connected to MongoDB')
 
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
-  })
-
 }).catch((error) => {
   console.error('error connecting to MongoDB:', error.message)
+})
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
 })
