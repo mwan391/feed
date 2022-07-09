@@ -54,11 +54,8 @@ export default function CoffeeListItem({ value, labelId }) {
           <ListItemText
             id={labelId}
             secondary={
-              <Typography
-                style={{ fontSize: 12, fontStyle: "italic", color: "GrayText" }}
-              >
-                {
-                  coffeePhrases[
+              <Typography style={{ fontSize: 12, fontStyle: "italic", color: "GrayText" }}>
+                {coffeePhrases[
                     Math.trunc(Math.random() * coffeePhrases.length)
                   ]
                 }

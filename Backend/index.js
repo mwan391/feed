@@ -88,16 +88,14 @@ const { name, date, people, description,  } = request.body
   }
 
   const user = await Person.findById(decodedToken.id)
-  
-  
-
   const event = new Event({
     name,
     date,
-    people: [].concat(user._id),
+    people,
     description,
     creator: user._id
   })
+  console.log(event)
 
   const savedEvent = await event.save()
   user.events = user.events.concat(savedEvent._id)
