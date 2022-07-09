@@ -29,11 +29,11 @@ app.get('/', (request, response) => {
   response.send('<h1>Team Beep</h1>')
 })
 
-app.get('/api/persons', (request, response) => {
-  Person.find({}).then(persons => {
-    response.json(persons)
-  })
+app.get('/api/persons', async (request, response) => {
+  const users = await Person.find({}).populate('events', { name: 1, description: 1, people: 1, creator: 1})
+  response.json(users)
 })
+
 
 app.get('/api/events', (req, res) => {
   Event.find({}).then(events => {
@@ -63,7 +63,7 @@ app.post('/api/persons', async (req, res) => {
   })
 
   const savedPerson = await person.save()
-  response.status(201).json(savedPerson)
+  res.status(201).json(savedPerson)
 })
 
 
