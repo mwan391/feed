@@ -51,21 +51,24 @@ export default function MediaCard({
   }
 
   return (
-    <div className="m-10 rounded-xl shadow-lg">
-      <Card sx={{ maxWidth: 345, borderRadius: "0.75rem", boxShadow: 0 }}>
+    <div className="m-4 2xl:m-10 rounded-xl shadow-lg h-full">
+      <Card sx={{ maxWidth: 345, borderRadius: '0.75rem', boxShadow: 0 }}>
         <CardMedia
           component="img"
           height="140"
           image="https://www.qthotels.com/auckland/wp-content/uploads/sites/115/2020/10/Esther-Restaurant-QTA-1800x1120.jpg"
           alt="green iguana"
         />
-        <div className="p-3">
+        <div className="p-3 flex flex-col self-end">
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               {name}
             </Typography>
             <Typography gutterBottom variant="h5" component="div">
-              location
+              {creator}
+            </Typography>
+            <Typography gutterBottom variant="h5" component="div">
+              {date}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               {description}

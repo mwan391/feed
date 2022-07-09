@@ -7,6 +7,7 @@ import { UserContext } from './utils/UserContext';
 import personService from './services/persons';
 import loginService from './services/login';
 import CheckboxListSecondary from './pages/coffee';
+import Register from './pages/register';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -37,9 +38,11 @@ function App() {
   };
 
   return (
-    <div className="App pt-[4rem]">
+    <div className="App py-[4rem] bg-stone-100 min-h-screen">
       <UserContext.Provider value={{ user }}>
-        {window.localStorage.loggedBeepUser && <Navbar setUser={setUser} />}
+        {window.localStorage.loggedBeepUser && (
+          <Navbar setUser={setUser} user={user} />
+        )}
         <Routes>
           <Route path="/" element={<></>} />
           <Route
@@ -48,6 +51,7 @@ function App() {
           />
           <Route path="/home" element={<Home />} />
           <Route path="/coffee" element={<CheckboxListSecondary />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </UserContext.Provider>
     </div>
