@@ -90,7 +90,7 @@ export default function MediaCard({
               <div>
                 <AvatarGroup max={3}>
                   {/* {people.map((person) => {
-                    return <BeepAvatar {...stringAvatar(name)} />;
+                    <BeepAvatar {...stringAvatar(name)} />;
                   })} */}
                 </AvatarGroup>
               </div>
