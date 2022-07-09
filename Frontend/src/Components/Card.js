@@ -19,7 +19,7 @@ export default function MediaCard({
   const { user } = React.useContext(UserContext);
 
   const hasJoined =
-    people.filter((person) => person.username === user.username).length() > 0;
+    people.filter((person) => person.username === user.username).length > 0;
 
   return (
     <div className="m-10 rounded-xl shadow-lg">
