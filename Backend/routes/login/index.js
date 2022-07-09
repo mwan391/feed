@@ -3,11 +3,11 @@
 import { Router } from "express";
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
-import Person from "../models/person.js"
+import Person from "../../models/person.js"
 
 const router = Router()
 
-router.post('/api/login', async (request, response) => {
+router.post('/', async (request, response) => {
 	const { username, password } = request.body
 
 	const user = await Person.findOne({ username })

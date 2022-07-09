@@ -1,7 +1,7 @@
 import { Router } from "express";
 import persons from "./persons/index.js"
 import events from "./events/index.js"
-import login from "./login.js"
+import login from "./login/index.js"
 
 const routes = Router();
 
