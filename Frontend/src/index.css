@@ -16,10 +16,6 @@ code {
     monospace;
 }
 
-.Avatar {
-  
-}
-
 .joinButton {
   margin: 0 0 8px 8px
 }
@@ -27,8 +23,8 @@ code {
 .coffee-outer {
 	display: flex;
 	justify-content: space-around;
-	height: 100vh;
 	align-items: center;
+	margin-top: 5%;
 }
 
 .coffee-inner {
