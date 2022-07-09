@@ -1,16 +1,14 @@
-
-import * as React from "react";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import GoogleMaps from "../images/GoogleMaps.webp"; // hardcoded
-import BeepAvatar from "./Avatar";
-import AvatarGroup from "@mui/material/AvatarGroup";
-import Stack from "@mui/material/Stack";
-
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import GoogleMaps from '../images/GoogleMaps.webp'; // hardcoded
+import BeepAvatar from './BeepAvatar';
+import AvatarGroup from '@mui/material/AvatarGroup';
+import Stack from '@mui/material/Stack';
 
 import { UserContext } from '../utils/UserContext';
 
@@ -46,12 +44,12 @@ export default function MediaCard({
     return color;
   }
 
-  function stringAvatar(name1) {
+  function stringAvatar(name) {
     return {
       sx: {
-        bgcolor: stringToColor(name1),
+        bgcolor: stringToColor(name),
       },
-      children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
+      children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
     };
   }
 
@@ -92,11 +90,9 @@ export default function MediaCard({
               </button>
               <div>
                 <AvatarGroup max={3}>
-
                   {people?.map((name) => (
                     <BeepAvatar {...stringAvatar(name)} />
                   ))}
-
                 </AvatarGroup>
               </div>
             </div>
