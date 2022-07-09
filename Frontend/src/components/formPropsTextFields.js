@@ -16,6 +16,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import SendIcon from '@mui/icons-material/Send';
 import { stepConnectorClasses } from '@mui/material';
+import PeopleSelector from './peopleSelector';
+import { useState } from 'react';
 
 
 const style = {
@@ -31,15 +33,45 @@ const style = {
 
 
 export default function BasicModal({open, handleOpen, handleClose}) {
-
-
+	const [description, setDescription] = useState("");
+	const [resturantName, setResturantName] = useState("");
+	const [selectedUsers, setSelectedUsers] = useState("");
+    const [personName, setPersonName] = useState([]);
 	const [value, setValue] = React.useState(new Date());
+	const [allUsers, setAllUsers] = useState();
 
 	const handleChange = (newValue) => {
-	  setValue(newValue);
+	  	setValue(newValue);
 	};
 
 	const handleSend = () => {
+		console.log(description)
+		var axios = require('axios');
+		var data = JSON.stringify({
+			"name": resturantName,
+			"date": value,
+			"people": personName,
+			"description": description
+		});
+
+		var config = {
+		method: 'post',
+		url: 'http://localhost:3001/api/events',
+		headers: { 
+			'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJlZXAiLCJpZCI6IjYyYzhjNGUxZjlhMWUwZmE1MmY2NTQwYiIsImlhdCI6MTY1NzM1OTgyOH0.H_PFQ4gXMT7X6p9C5bpNXPt8IpzHJa53UqsZTcbN0hA', 
+			'Content-Type': 'application/json'
+		},
+		data : data
+		};
+
+		axios(config)
+		.then(function (response) {
+			console.log(JSON.stringify(response.data));
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+		console.log(personName)
 		handleClose();
 	}
 
@@ -67,26 +99,6 @@ export default function BasicModal({open, handleOpen, handleClose}) {
 					/>
 				</LocalizationProvider>
 			</div>
-            <Paper
-				component="form"
-				sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 435, marginTop:"20px" }}
-            >
-              <IconButton sx={{ p: '10px' }} aria-label="menu">
-                <MenuIcon />
-              </IconButton>
-              <InputBase
-					sx={{ ml: 1, flex: 1 }}
-					placeholder="Search Google Maps"
-					inputProps={{ 'aria-label': 'search google maps' }}
-              />
-              <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
-                <SearchIcon />
-              </IconButton>
-              <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-              <IconButton color="primary" sx={{ p: '10px' }} aria-label="directions">
-                <DirectionsIcon />
-              </IconButton>
-            </Paper>
 
             <div>
 
@@ -97,7 +109,7 @@ export default function BasicModal({open, handleOpen, handleClose}) {
 						marginTop: "30px"
 					}}
 					>
-					<TextField fullWidth label="Resturant Name" id="fullWidth" />
+					<TextField fullWidth label="Resturant Name" id="fullWidth" onChange={(event) => setResturantName(event.target.value)} />
 					</Box>
 					<Box
 					sx={{
@@ -111,10 +123,14 @@ export default function BasicModal({open, handleOpen, handleClose}) {
 							label="Description"
 							fullWidth
 							multiline
+							onChange={(event) => setDescription(event.target.value)}
 							rows={4}
 						/>
 				</Box>
             </div>
+
+			<PeopleSelector personName={personName} setPersonName={setPersonName} setAllUsers={setAllUsers} />
+
 			<Button variant="contained" sx={{width: 500,maxWidth: '100%',marginTop: "30px"}} endIcon={<SendIcon />} onClick={ () => handleSend()}>
 				Send
 			</Button>

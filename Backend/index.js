@@ -90,16 +90,14 @@ app.post('/api/events', async (request, response) => {
   }
 
   const user = await Person.findById(decodedToken.id)
-  const defaultPeople = [].concat(user._id)
-  const finalPeople = people ? defaultPeople.concat(people) : defaultPeople
-
   const event = new Event({
     name,
     date,
-    people: finalPeople,
+    people,
     description,
     creator: user._id
   })
+  console.log(event)
 
   const savedEvent = await event.save()
   user.events = user.events.concat(savedEvent._id)
