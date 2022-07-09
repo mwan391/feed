@@ -3,16 +3,24 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../images/knifefork.svg';
 import BasicModal from './formPropsTextFields';
 
-function Navbar() {
+function Navbar({ setLoggedIn, setUser }) {
   const [dropdownClicked, setDropdownClicked] = React.useState(false);
   const [open, setOpen] = React.useState(false);
-	const handleOpen = () => setOpen(true);
-	const handleClose = () => setOpen(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  function handleLogOut() {
+    setLoggedIn(false);
+    setUser({});
+  }
 
   return (
     <nav className="bg-blue-400 z-30 shadow-lg py-2.5 px-6 fixed w-screen top-0 h-[4rem]">
-
-      <BasicModal open={open} handleOpen={handleOpen} handleClose={handleClose} />
+      <BasicModal
+        open={open}
+        handleOpen={handleOpen}
+        handleClose={handleClose}
+      />
 
       <div className="h-full flex items-center w-full">
         <Link
@@ -36,7 +44,10 @@ function Navbar() {
                 Grab a Coffee
               </h3>
             </Link>
-            <h3 className="text-white hover:text-yellow-500 hover:cursor-pointer inline-flex mx-4" onClick={() => setOpen(true)}>
+            <h3
+              className="text-white hover:text-yellow-500 hover:cursor-pointer inline-flex mx-4"
+              onClick={() => setOpen(true)}
+            >
               Create an Event
             </h3>
           </div>
@@ -72,7 +83,12 @@ function Navbar() {
                   <button className="hover:text-gray-400">Edit Profile</button>
                 </li>
                 <li className="py-3 px-4 border-t">
-                  <button className="hover:text-gray-400">Log Out</button>
+                  <button
+                    className="hover:text-gray-400"
+                    onClick={handleLogOut()}
+                  >
+                    Log Out
+                  </button>
                 </li>
               </ul>
             </div>
