@@ -18,8 +18,7 @@ export default function MediaCard({
   const { user } = React.useContext(UserContext);
   const dateType = new Date(date);
 
-  const hasJoined =
-    people?.filter((person) => person?.username === user?.username).length > 0;
+  const hasJoined = people.includes(user.name);
 
   function stringToColor(string) {
     let hash = 0;
@@ -64,9 +63,7 @@ export default function MediaCard({
             <Typography gutterBottom variant="h5" component="div">
               {name}
             </Typography>
-            <Typography gutterBottom variant="h5" component="div">
-              {creator}
-            </Typography>
+            <Typography gutterBottom variant="h5" component="div"></Typography>
             <Typography gutterBottom variant="h5" component="div">
               {date &&
                 `${dateType.getDate()}/${dateType.getMonth()}/${dateType.getFullYear()} ${(
