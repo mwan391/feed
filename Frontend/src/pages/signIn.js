@@ -1,24 +1,21 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 
-import { useState } from 'react'
-
+import { useState } from 'react';
 
 const theme = createTheme();
 
 export default function SignIn(props) {
-
   const submitLogin = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -26,14 +23,13 @@ export default function SignIn(props) {
       email: data.get('email'),
       password: data.get('password'),
     });
-    props.handleSubmit(username, password)
-    setUsername('')
-    setPassword('')
-
+    props.handleSubmit(username, password);
+    setUsername('');
+    setPassword('');
   };
 
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
     <ThemeProvider theme={theme}>
@@ -50,7 +46,12 @@ export default function SignIn(props) {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={submitLogin} noValidate sx={{ mt: 1 }}>
+          <Box
+            component="form"
+            onSubmit={submitLogin}
+            noValidate
+            sx={{ mt: 1 }}
+          >
             <TextField
               margin="normal"
               required
@@ -63,7 +64,6 @@ export default function SignIn(props) {
               value={username}
               type="text"
               onChange={({ target }) => setUsername(target.value)}
-
             />
             <TextField
               margin="normal"
@@ -91,12 +91,12 @@ export default function SignIn(props) {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link to="/signin" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link to="/register" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
