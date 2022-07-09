@@ -19,7 +19,7 @@ export default function MediaCard({
   const dateType = new Date(date);
 
   const hasJoined =
-    people.filter((person) => person?.username === user?.username).length > 0;
+    people?.filter((person) => person?.username === user?.username).length > 0;
 
   function stringToColor(string) {
     let hash = 0;
@@ -89,9 +89,9 @@ export default function MediaCard({
               </button>
               <div>
                 <AvatarGroup max={3}>
-                  {people.map((person) => {
-                    <BeepAvatar {...stringAvatar(name)} />;
-                  })}
+                  {/* {people.map((person) => {
+                    return <BeepAvatar {...stringAvatar(name)} />;
+                  })} */}
                 </AvatarGroup>
               </div>
             </div>
