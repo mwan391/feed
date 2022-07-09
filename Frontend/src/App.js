@@ -9,8 +9,9 @@ import personService from './services/persons';
 import loginService from './services/login';
 
 function App() {
-  const [user, setUser] = useState(null);
 
+  const [user, setUser] = useState(null)
+  
   const handleLogin = async (username, password) => {
     try {
       const user = await loginService.login({
