@@ -3,6 +3,7 @@
 import { Router } from "express";
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
+import Person from "../models/person.js"
 
 const router = Router()
 
@@ -20,12 +21,10 @@ router.post('/api/login', async (request, response) => {
 		})
 	}
 
-
 	const userForToken = {
 		username: user.username,
 		id: user._id
 	}
-
 	const token = jwt.sign(userForToken, process.env.SECRET)
 
 	// return token to browser
