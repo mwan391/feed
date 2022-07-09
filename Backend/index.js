@@ -81,6 +81,42 @@ app.post('/api/persons', async (req, res) => {
   res.status(201).json(savedPerson)
 })
 
+app.get('/api/persons/:id', (request, response) => {
+  Person.findById(request.params.id).then(p => {
+    if (p) {
+      response.json(p)
+    } else {
+      response.status(404).end()
+    }
+  })
+    .catch(error => console.error(error))
+})
+
+app.get('/api/events/:id', (request, response) => {
+  Event.findById(request.params.id).then(e => {
+    if (e) {
+      response.json(e)
+    } else {
+      response.status(404).end()
+    }
+  })
+    .catch(error => console.error(error))
+})
+
+
+app.put('/api/events/:id', (request, response) => {
+  const body = request.body
+
+  const newEvent = body
+
+  Event.findByIdAndUpdate(request.params.id, newEvent, { new: true })
+    .then(updatedEvent => {
+      response.json(updatedEvent)
+    })
+    .catch(error => console.error(error))
+})
+
+
 
 app.post('/api/events', async (request, response) => {
   const { name, date, people, description, } = request.body
