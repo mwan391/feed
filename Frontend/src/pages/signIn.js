@@ -26,7 +26,7 @@ export default function SignIn(props) {
       email: data.get('email'),
       password: data.get('password'),
     });
-    props.handleSumbit(username, password)
+    props.handleSubmit(username, password)
     setUsername('')
     setPassword('')
 
