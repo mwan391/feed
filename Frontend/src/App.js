@@ -7,6 +7,7 @@ import { UserContext } from './utils/UserContext';
 import personService from './services/persons';
 import loginService from './services/login';
 import CheckboxListSecondary from './pages/coffee';
+import Register from './pages/register';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -50,6 +51,7 @@ function App() {
           />
           <Route path="/home" element={<Home />} />
           <Route path="/coffee" element={<CheckboxListSecondary />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </UserContext.Provider>
     </div>
