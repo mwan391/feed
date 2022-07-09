@@ -15,6 +15,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import SendIcon from '@mui/icons-material/Send';
+import { stepConnectorClasses } from '@mui/material';
 
 
 const style = {
@@ -29,20 +30,22 @@ const style = {
 };
 
 
-export default function BasicModal() {
-	const [open, setOpen] = React.useState(false);
-	const handleOpen = () => setOpen(true);
-	const handleClose = () => setOpen(false);
+export default function BasicModal({open, handleOpen, handleClose}) {
 
-	const [value, setValue] = React.useState(new Date('2014-08-18T21:11:54'));
+
+	const [value, setValue] = React.useState(new Date());
 
 	const handleChange = (newValue) => {
 	  setValue(newValue);
 	};
 
+	const handleSend = () => {
+		handleClose();
+	}
+
   	return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      
       <Modal
         open={open}
         onClose={handleClose}
@@ -112,7 +115,7 @@ export default function BasicModal() {
 						/>
 				</Box>
             </div>
-			<Button variant="contained" sx={{width: 500,maxWidth: '100%',marginTop: "30px"}} endIcon={<SendIcon />}>
+			<Button variant="contained" sx={{width: 500,maxWidth: '100%',marginTop: "30px"}} endIcon={<SendIcon />} onClick={ () => handleSend()}>
 				Send
 			</Button>
           </Box>

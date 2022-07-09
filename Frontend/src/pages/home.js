@@ -10,7 +10,6 @@ function Home() {
 
 
       <div className="eventCreation"><FormPropsTextFields/></div>
-      <p>Home</p>
       <CardGrid />
 
     </div>
