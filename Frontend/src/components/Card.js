@@ -22,7 +22,7 @@ export default function MediaCard({
     people.filter((person) => person.username === user.username).length > 0;
 
   return (
-    <div className="m-10 rounded-xl shadow-lg">
+    <div className="m-4 2xl:m-10 rounded-xl shadow-lg">
       <Card sx={{ maxWidth: 345, borderRadius: '0.75rem', boxShadow: 0 }}>
         <CardMedia
           component="img"
@@ -36,7 +36,10 @@ export default function MediaCard({
               {name}
             </Typography>
             <Typography gutterBottom variant="h5" component="div">
-              location
+              {creator}
+            </Typography>
+            <Typography gutterBottom variant="h5" component="div">
+              {date}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               {description}
