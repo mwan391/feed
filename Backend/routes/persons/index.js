@@ -1,6 +1,8 @@
 import { Router } from "express";
 const router = Router()
 import Person from "../../models/person.js"
+import bcrypt from 'bcrypt'
+
 
 
 router.get('/', async (request, response) => {

@@ -3,8 +3,8 @@ Content-Type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJlZXAiLCJpZCI6IjYyYzhjNGUxZjlhMWUwZmE1MmY2NTQwYiIsImlhdCI6MTY1NzM1MjA2MX0.KsVy5g1pA8NdP-RipP7bbh0HHbWuvPFoeo8NJN9CV-8
 
 {
-    "name": "PRESENTATION TIME!?",
+    "name": "Pub session with mates",
 	"creator": "62c8c4e1f9a1e0fa52f6540b",
     "userId": "62c8c4e1f9a1e0fa52f6540b",
-	"description": "Test presentation test"
+	"description": "Gotta a few bar tickets, lets have a drink!"
 }
