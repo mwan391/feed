@@ -1,5 +1,5 @@
-import React from 'react';
-import CardGrid from '../Components/CardGrid';
+import React from "react";
+import CardGrid from "../components/CardGrid";
 
 function Home() {
   return (
