@@ -39,6 +39,7 @@ function App() {
           <Route path="/home" element={<Home />} />
         </Routes>
       </UserContext.Provider>
+>>>>>>> main
     </div>
   );
 }
