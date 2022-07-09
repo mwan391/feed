@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
+import { ReactComponent as Logo } from '../images/knifefork.svg';
 
 import { useState } from 'react';
 
@@ -43,6 +44,8 @@ export default function SignIn(props) {
             alignItems: 'center',
           }}
         >
+          <Logo className="stroke-blue-400 w-[10rem] -mt-10" />
+          <h1 className="mb-10 mt-2 font-bold text-6xl text-blue-400">beep</h1>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
@@ -91,12 +94,20 @@ export default function SignIn(props) {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link to="/signin" variant="body2">
+                <Link
+                  className="hover:text-blue-400"
+                  to="/signin"
+                  variant="body2"
+                >
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link to="/register" variant="body2">
+                <Link
+                  className="hover:text-blue-400"
+                  to="/register"
+                  variant="body2"
+                >
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
