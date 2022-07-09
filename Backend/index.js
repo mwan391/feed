@@ -82,7 +82,7 @@ app.post('/api/persons', async (req, res) => {
 
 app.post('/api/events', async (request, response) => {
   const { name, date, people, description, } = request.body
-
+  console.log(date)
   const token = getTokenFrom(request)
   const decodedToken = jwt.verify(token, process.env.SECRET)
   if (!token || !decodedToken.id) {
@@ -98,7 +98,7 @@ app.post('/api/events', async (request, response) => {
     creator: user._id
   })
   console.log(event)
-
+  
   const savedEvent = await event.save()
   user.events = user.events.concat(savedEvent._id)
   await user.save()
