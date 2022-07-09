@@ -28,7 +28,7 @@ function Navbar({ user, setUser }) {
           to="/home"
         >
           <Logo className="w-10 mr-2" />
-          <h1 className="Logo text-2xl inline-flex font-semibold whitespace-nowrap my-auto">
+          <h1 className="Logo text-2xl inline-flex font-semibold whitespace-nowrap mt-2">
             feed
           </h1>
         </Link>
