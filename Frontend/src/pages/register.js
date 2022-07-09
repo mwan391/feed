@@ -1,20 +1,17 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import { useState } from 'react'
-
+import { useState } from 'react';
 
 const theme = createTheme();
 
@@ -26,36 +23,36 @@ export default function Register(props) {
 
     var axios = require('axios');
     var fetchData = JSON.stringify({
-      "username": data.get('email'),
-      "name": data.get("name"),
-      "password": data.get('password')
+      username: data.get('email'),
+      name: data.get('name'),
+      password: data.get('password'),
     });
 
     var config = {
       method: 'post',
       url: 'http://localhost:3001/api/persons',
-      headers: { 
-        'Content-Type': 'application/json'
+      headers: {
+        'Content-Type': 'application/json',
       },
-      data : fetchData
+      data: fetchData,
     };
 
     axios(config)
-    .then(function (response) {
-      console.log(JSON.stringify(response.data));
-      setUsername('')
-      setName('')
-      setPassword('')
-      navigate("/")
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        setUsername('');
+        setName('');
+        setPassword('');
+        navigate('/');
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
-  const [username, setUsername] = useState('')
-  const [name, setName] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
     <ThemeProvider theme={theme}>
@@ -72,8 +69,13 @@ export default function Register(props) {
           <Typography component="h1" variant="h5">
             Register
           </Typography>
-          <Box component="form" onSubmit={submitLogin} noValidate sx={{ mt: 1 }}>
-          <TextField
+          <Box
+            component="form"
+            onSubmit={submitLogin}
+            noValidate
+            sx={{ mt: 1 }}
+          >
+            <TextField
               margin="normal"
               required
               fullWidth
@@ -96,7 +98,6 @@ export default function Register(props) {
               value={username}
               type="text"
               onChange={({ target }) => setUsername(target.value)}
-
             />
             <TextField
               margin="normal"
@@ -124,13 +125,13 @@ export default function Register(props) {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link to="/register" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link to="/signin" variant="body2">
+                  {'Already have an account? Sign In'}
                 </Link>
               </Grid>
             </Grid>

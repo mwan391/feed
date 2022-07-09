@@ -15,7 +15,10 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
-    if (!window.localStorage.loggedBeepUser) {
+    if (
+      !window.localStorage.loggedBeepUser &&
+      location.pathname !== '/register'
+    ) {
       navigate('/signin');
     }
   }, [window.localStorage.loggedBeepUser, location.pathname]);
