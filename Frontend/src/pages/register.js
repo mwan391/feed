@@ -84,7 +84,6 @@ export default function Register(props) {
               value={name}
               type="text"
               onChange={({ target }) => setName(target.value)}
-
             />
             <TextField
               margin="normal"
@@ -94,7 +93,6 @@ export default function Register(props) {
               label="Email Address"
               name="email"
               autoComplete="email"
-              autoFocus
               value={username}
               type="text"
               onChange={({ target }) => setUsername(target.value)}
