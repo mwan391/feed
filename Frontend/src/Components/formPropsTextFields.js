@@ -16,6 +16,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import SendIcon from '@mui/icons-material/Send';
 import { stepConnectorClasses } from '@mui/material';
+import { useState } from 'react';
 
 
 const style = {
@@ -31,15 +32,39 @@ const style = {
 
 
 export default function BasicModal({open, handleOpen, handleClose}) {
-
-
-	const [value, setValue] = React.useState(new Date());
+	const [description, setDescription] = useState()
+	const [dateTime, setDateTime] = useState();
+	const [resturantName, setResturantName] = useState();
+	const [value, setValue] = React.useState(new Date()); //DateTime
 
 	const handleChange = (newValue) => {
-	  setValue(newValue);
-	};
+		setValue(newValue);
+	  };
 
 	const handleSend = () => {
+		var axios = require('axios');
+		var data = JSON.stringify({
+			"name": description,
+			"date": value,
+			"description": description
+		});
+
+		var config = {
+		method: 'post',
+		url: 'http://localhost:3001/api/events',
+		headers: { 
+			'Content-Type': 'application/json'
+		},
+		data : data
+		};
+
+		axios(config)
+		.then(function (response) {
+		console.log(JSON.stringify(response.data));
+		})
+		.catch(function (error) {
+		console.log(error);
+		});
 		handleClose();
 	}
 
@@ -50,7 +75,7 @@ export default function BasicModal({open, handleOpen, handleClose}) {
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+    	aria-describedby="modal-modal-description"
       >
         <div className='modalWrapper'>
           <Box sx={style}>
@@ -59,14 +84,15 @@ export default function BasicModal({open, handleOpen, handleClose}) {
             </Typography>
 			<div style={{ paddingTop: 30 }}>
 				<LocalizationProvider dateAdapter={AdapterDateFns} >
-					<DateTimePicker 
-						label="Date&Time picker"
-						value={value}
-						onChange={handleChange}
-						renderInput={(params) => <TextField {...params} />}
-					/>
+				<DateTimePicker
+					label="Date&Time picker"
+					value={value}
+					onChange={handleChange}
+					renderInput={(params) => <TextField {...params} />}
+				/>
 				</LocalizationProvider>
 			</div>
+
             <Paper
 				component="form"
 				sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 435, marginTop:"20px" }}
@@ -97,7 +123,11 @@ export default function BasicModal({open, handleOpen, handleClose}) {
 						marginTop: "30px"
 					}}
 					>
-					<TextField fullWidth label="Resturant Name" id="fullWidth" />
+					<TextField 
+						fullWidth label="Resturant Name" 
+						id="fullWidth"  
+						onChange={(event) => {setResturantName(event.target.value)}}
+					/>
 					</Box>
 					<Box
 					sx={{
@@ -107,11 +137,12 @@ export default function BasicModal({open, handleOpen, handleClose}) {
 					}}
 					>
 						<TextField
-							id="outlined-multiline-static"
+							id="description"
 							label="Description"
 							fullWidth
 							multiline
 							rows={4}
+							onChange={(event) => {setDescription(event.target.value)}}
 						/>
 				</Box>
             </div>
