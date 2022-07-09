@@ -84,12 +84,8 @@ export default function MediaCard({
               <div>
                 <AvatarGroup max={3}>
                   {people.map((person) => {
-                    <BeepAvatar name={person?.name} />;
+                    <BeepAvatar {...stringAvatar(name)} />;
                   })}
-                  <BeepAvatar {...stringAvatar("Dami Oh")} />
-                  <BeepAvatar {...stringAvatar("Jaeden West")} />
-                  <BeepAvatar {...stringAvatar("BJ Kim")} />
-                  <BeepAvatar {...stringAvatar("Haha Hoho")} />
                 </AvatarGroup>
               </div>
             </div>
