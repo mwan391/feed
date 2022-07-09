@@ -3,6 +3,7 @@ import cors from "cors"
 // import routes from "./routes/index.js";
 
 import mongoose from "mongoose"
+import morgan from "morgan"
 import Person from "./models/person.js";
 import Event from "./models/events.js"
 
@@ -25,7 +26,8 @@ app.use(cors())
 app.use(express.json())
 // app.use("/api", routes);
 
-
+morgan.token('body', (req) => JSON.stringify(req.body))
+app.use(morgan(':method\n:url\n:status\n:res[content-length] - :response-time ms \n:body' + "\n ------------"))
 
 const getTokenFrom = request => {
   const authorization = request.get('authorization')
