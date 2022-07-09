@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ReactComponent as Logo } from '../images/knifefork.svg';
 
 function Navbar() {
   const [dropdownClicked, setDropdownClicked] = React.useState(false);
 
   return (
-    <nav className="bg-blue-400 shadow-lg px-2 sm:px-4 py-2.5 fixed top-0 w-full h-[4rem]">
-      <div className="container h-full flex items-center mx-auto">
+    <nav className="bg-blue-400 z-30 shadow-lg py-2.5 px-6 fixed w-screen top-0 h-[4rem]">
+      <div className="h-full flex items-center w-full">
+        <Logo className="w-10 mr-4" />
         <h1 className="text-2xl inline-flex font-semibold whitespace-nowrap dark:text-white">
           Beep
         </h1>
