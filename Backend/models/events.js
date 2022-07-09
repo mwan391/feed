@@ -2,17 +2,27 @@ import mongoose from "mongoose"
 // import { Schema } from "mongoose";
 
 const eventSchema = new mongoose.Schema({
-	name: String,
+	name: {
+		type: String,
+		required: true,
+	},
 	creator: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Person'
 	},
-	date: Date,
+	date: {
+		type: Date,
+		// required: true,
+	},
 	people: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Person'
 	}],
-	description: String,
+	description: {
+		type: String,
+		required: true,
+		minlength: 10
+	},
 })
 
 eventSchema.set('toJSON', {
