@@ -9,6 +9,7 @@ const personSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	quote: String,
 	passwordHash: String,
 	location: String,
 	coffee: Boolean,

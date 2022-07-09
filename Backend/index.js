@@ -53,7 +53,7 @@ app.get('/api/events', (req, res) => {
 })
 
 app.post('/api/persons', async (req, res) => {
-  const { username, name, password } = req.body
+  const { username, name, password, quote, coffee } = req.body
 
   // invalid username (same username)
   const existingUser = await Person.findOne({ username })
@@ -70,7 +70,9 @@ app.post('/api/persons', async (req, res) => {
   const person = new Person({
     username,
     name,
+    quote,
     passwordHash,
+    coffee: coffee ? coffee : false
   })
 
   const savedPerson = await person.save()
@@ -88,16 +90,14 @@ app.post('/api/events', async (request, response) => {
   }
 
   const user = await Person.findById(decodedToken.id)
-  const defaultPeople = [].concat(user._id)
-  const finalPeople = people ? defaultPeople.concat(people) : defaultPeople
-
   const event = new Event({
     name,
     date,
-    people: finalPeople,
+    people,
     description,
     creator: user._id
   })
+  console.log(event)
 
   const savedEvent = await event.save()
   user.events = user.events.concat(savedEvent._id)
