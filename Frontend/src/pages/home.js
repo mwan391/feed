@@ -1,8 +1,8 @@
 import React from 'react';
 import "./home.css"
-import CardGrid from '../Components/CardGrid';
+import CardGrid from '../components/CardGrid';
 import { Card } from '@mui/material';
-import FormPropsTextFields from '../Components/formPropsTextFields';
+import FormPropsTextFields from '../components/formPropsTextFields';
 
 function Home() {
   return (
