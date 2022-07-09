@@ -8,11 +8,16 @@ function Navbar() {
   return (
     <nav className="bg-blue-400 z-30 shadow-lg py-2.5 px-6 fixed w-screen top-0 h-[4rem]">
       <div className="h-full flex items-center w-full">
-        <Logo className="w-10 mr-4" />
-        <h1 className="text-2xl inline-flex font-semibold whitespace-nowrap dark:text-white">
-          Beep
-        </h1>
-        <div className="flex justify-between w-full font-bold">
+        <Link
+          className="flex hover:cursor-pointer hover:text-yellow-500 hover:stroke-yellow-500 text-white stroke-white h-full"
+          to="/home"
+        >
+          <Logo className="w-10 mr-2" />
+          <h1 className="text-2xl inline-flex font-semibold whitespace-nowrap my-auto">
+            Beep
+          </h1>
+        </Link>
+        <div className="flex justify-between w-full font-bold ml-8">
           <div className="w-fit mx-6 my-auto">
             <Link to="/home">
               <h3 className="text-white hover:text-yellow-500 hover:cursor-pointer inline-flex mx-4">
