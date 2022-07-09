@@ -11,7 +11,16 @@ import AvatarGroup from '@mui/material/AvatarGroup';
 import Stack from '@mui/material/Stack';
 import { deepOrange, deepPurple, pink } from '@mui/material/colors';
 
-export default function MediaCard() {
+import { UserContext } from '../utils/UserContext';
+
+export default function MediaCard({
+  currentEvent: { name, creator, date, people, description },
+}) {
+  const { user } = React.useContext(UserContext);
+
+  const hasJoined =
+    people.filter((person) => person.username === user.username).length > 0;
+
   return (
     <div className="m-10 rounded-xl shadow-lg">
       <Card sx={{ maxWidth: 345, borderRadius: '0.75rem', boxShadow: 0 }}>
@@ -24,19 +33,24 @@ export default function MediaCard() {
         <div className="p-3">
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              Name
+              {name}
             </Typography>
             <Typography gutterBottom variant="h5" component="div">
-              Restaurant
+              location
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Sub text
+              {description}
             </Typography>
           </CardContent>
           <CardActions>
-            <Button className="joinButton" variant="outlined">
-              Join
-            </Button>
+            <button
+              className={`${
+                hasJoined ? 'bg-red-500' : 'bg-blue-500'
+              } text-white py-2 px-3 rounded-md shadow-lg font-bold hover:bg-opacity-90`}
+              variant="outlined"
+            >
+              {hasJoined ? 'Leave' : 'Join'}
+            </button>
             <div className="Avatar">
               <AvatarGroup max={4}>
                 <Avatar
