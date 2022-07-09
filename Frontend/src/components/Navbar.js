@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../images/knifefork.svg';
 import BasicModal from './formPropsTextFields';
 
-function Navbar({ setUser }) {
+function Navbar({ user, setUser }) {
   const [dropdownClicked, setDropdownClicked] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -56,7 +56,7 @@ function Navbar({ setUser }) {
               className="flex items-center justify-between w-full py-2 pl-3 pr-4 font-medium text-white hover:bg-gray-50 md:hover:bg-transparent hover:text-yellow-500"
               onClick={() => setDropdownClicked((prevState) => !prevState)}
             >
-              Username{' '}
+              {user?.username || 'No Username'}
               <svg
                 className={`${
                   dropdownClicked ? 'rotate-180' : ''

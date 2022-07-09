@@ -39,7 +39,9 @@ function App() {
   return (
     <div className="App pt-[4rem]">
       <UserContext.Provider value={{ user }}>
-        {window.localStorage.loggedBeepUser && <Navbar setUser={setUser} />}
+        {window.localStorage.loggedBeepUser && (
+          <Navbar setUser={setUser} user={user} />
+        )}
         <Routes>
           <Route path="/" element={<></>} />
           <Route

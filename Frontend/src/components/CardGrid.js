@@ -13,11 +13,9 @@ function CardGrid() {
     []
   );
 
-  console.log(events);
-
   return (
-    <div class="container mx-auto px-12 mt-8">
-      <div class="flex flex-wrap -mx-1 lg:-mx-4 justify-between px-20">
+    <div class="container mx-auto px-8 xl:px-12 mt-8">
+      <div class="flex flex-wrap -mx-1 lg:-mx-4 justify-between px-10 2xl:px-20">
         {events.map((currentEvent) => (
           <MediaCard currentEvent={currentEvent} />
         ))}
