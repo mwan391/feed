@@ -8,9 +8,11 @@ function Home() {
   return (
     <div>
 
+
       <div className="eventCreation"><FormPropsTextFields/></div>
       <p>Home</p>
-      
+      <CardGrid />
+
     </div>
   );
 }

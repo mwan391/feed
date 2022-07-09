@@ -14,6 +14,10 @@ Backend/.env
 /build
 
 # misc
+
+Backend/.env
+Backend/node_modules
+
 .DS_Store
 .env.local
 .env.development.local
