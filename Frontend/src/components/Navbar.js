@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../images/knifefork.svg';
 import BasicModal from './formPropsTextFields';
 
-function Navbar({ setLoggedIn, setUser }) {
+function Navbar({ setUser }) {
   const [dropdownClicked, setDropdownClicked] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   function handleLogOut() {
-    setLoggedIn(false);
     setUser({});
+    localStorage.clear();
   }
 
   return (
@@ -85,7 +85,7 @@ function Navbar({ setLoggedIn, setUser }) {
                 <li className="py-3 px-4 border-t">
                   <button
                     className="hover:text-gray-400"
-                    onClick={handleLogOut()}
+                    onClick={handleLogOut}
                   >
                     Log Out
                   </button>
