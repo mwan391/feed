@@ -44,7 +44,7 @@ export default function Register(props) {
         setUsername("");
         setName("");
         setPassword("");
-        navigate("/");
+        navigate("/signin");
       })
       .catch(function (error) {
         console.log(error);
