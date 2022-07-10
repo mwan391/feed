@@ -14,11 +14,53 @@ import { UserContext } from '../utils/UserContext';
 
 export default function MediaCard({
   currentEvent,
-  currentEvent: { name, creator, date, people, description },
+  currentEvent: { name, creator, date, people, description, id },
 }) {
   const { user } = React.useContext(UserContext);
   const dateType = new Date(date);
   const [hasJoined, setHasJoined] = React.useState(false);
+
+  const handleClick = (id) => {
+    console.log(people);
+    console.log(user.name)
+    let templist = people
+    if(!hasJoined){
+      templist.push(user.name);
+    }else{
+      const index = people.indexOf(name);
+      templist.pop(index);
+    }
+    setHasJoined(!hasJoined)
+    console.log(templist)
+    var axios = require('axios');
+    var data = JSON.stringify({
+      "name": name,
+      "creator": creator,
+      "date": date,
+      "people": templist,
+      "description": description,
+      "id": "62ca055fa7ec3b205e0c16c5"
+    });
+    
+    var config = {
+      method: 'put',
+      url: 'http://localhost:3001/api/events/62ca055fa7ec3b205e0c16c5',
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+    
+    axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    
+
+  }
 
   React.useEffect(() => {
     setHasJoined(people.includes(user.name));
@@ -85,6 +127,7 @@ export default function MediaCard({
                   hasJoined ? 'bg-red-500' : 'bg-blue-500'
                 } text-white py-2 px-3 rounded-md shadow-lg font-bold hover:bg-opacity-90`}
                 variant="outlined"
+                onClick={() => handleClick(id)}
               >
                 {hasJoined ? 'Leave' : 'Join'}
               </button>
