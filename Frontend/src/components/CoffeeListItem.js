@@ -9,9 +9,20 @@ import Avatar from "@mui/material/Avatar";
 import FaceIcon from "@mui/icons-material/Face";
 import { deepOrange, deepPurple, pink } from "@mui/material/colors";
 import Typography from "@mui/material/Typography";
+import peopleService from "../services/persons";
+import CoffeeComponent from "./CoffeeComponent";
 
-export default function CoffeeListItem({ value, labelId }) {
+export default function CoffeeListItem() {
   const [iconClicked, setIconClicked] = React.useState(false);
+  const [allPeople, setAllPeople] = React.useState([]);
+
+  React.useEffect(
+    () => async () => {
+      const allPersons = await peopleService.getAll();
+      setAllPeople(allPersons);
+    },
+    []
+  );
 
   function handleClick() {
     setIconClicked((prevState) => !prevState);
@@ -32,8 +43,10 @@ export default function CoffeeListItem({ value, labelId }) {
 
   return (
     <div className="py-2">
-      <ListItem key={value}>
-        <ListItemAvatar>
+      {allPeople?.map((person) => (
+        <CoffeeComponent person={person} key={person.id} />
+      ))}
+      {/* <ListItemAvatar>
           <Avatar
             alt={`Avatar n°${value + 1}`}
             src={`/static/images/avatar/${value + 1}.jpg`}
@@ -69,8 +82,7 @@ export default function CoffeeListItem({ value, labelId }) {
           } hover:cursor-pointer ml-6`}
           onClick={handleClick}
           fontSize="large"
-        />
-      </ListItem>
+        /> */}
     </div>
   );
 }
