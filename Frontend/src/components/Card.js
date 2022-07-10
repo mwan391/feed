@@ -39,7 +39,7 @@ export default function MediaCard({
       "date": date,
       "people": templist,
       "description": description,
-      "id": "62ca055fa7ec3b205e0c16c5"
+      "id": id
     });
     
     var config = {
@@ -139,12 +139,11 @@ export default function MediaCard({
             <Typography gutterBottom variant="h5" component="div">
               {name}
             </Typography>
-            <Typography gutterBottom variant="h5" component="div"></Typography>
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography gutterBottom variant="h7" component="div">
               {dateType?.toDateString()}
-              <br />
-              {("00" + dateType?.getHours()).slice(-2)}:
-              {("00" + dateType?.getMinutes()).slice(-2)}
+              {", "}
+              {('00' + dateType?.getHours()).slice(-2)}:
+              {('00' + dateType?.getMinutes()).slice(-2)}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               {description}

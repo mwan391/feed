@@ -109,7 +109,7 @@ app.put('/api/events/:id', (request, response) => {
 
   const newEvent = body
 
-  Event.findByIdAndUpdate(request.params.id, newEvent, { new: true })
+  Event.findByIdAndUpdate({_id: request.params.id},  newEvent, { new: true })
     .then(updatedEvent => {
       response.json(updatedEvent)
     })
