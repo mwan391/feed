@@ -53,14 +53,14 @@ function Navbar({ user, setUser }) {
           </div>
           <div className="">
             <button
-              className="flex items-center justify-between w-full py-2 pl-3 pr-4 font-medium text-white hover:bg-gray-50 md:hover:bg-transparent hover:text-yellow-500"
+              className="flex text-xl items-center justify-between w-full py-2 pl-3 pr-4 font-medium text-white hover:bg-gray-50 md:hover:bg-transparent hover:text-yellow-500"
               onClick={() => setDropdownClicked((prevState) => !prevState)}
             >
               {user?.username || 'No Username'}
               <svg
                 className={`${
                   dropdownClicked ? 'rotate-180' : ''
-                } transition-transform w-4 h-4 ml-1`}
+                } transition-transform w-4 h-4 ml-1 scale-150 mt-1`}
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +76,7 @@ function Navbar({ user, setUser }) {
               id="dropdownNavbar"
               className={`z-10 ${
                 dropdownClicked ? 'visible' : 'hidden'
-              } bg-white divide-gray-100 rounded shadow fixed top-[3rem] w-[8rem] text-left`}
+              } bg-white divide-gray-100 rounded shadow fixed top-[3rem] right-10 w-[10rem] text-left`}
             >
               <ul className="text-sm text-gray-700">
                 <li className="py-3 px-4">
