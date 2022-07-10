@@ -12,6 +12,8 @@ import Stack from '@mui/material/Stack';
 
 import { UserContext } from '../utils/UserContext';
 
+import eventServices from "../services/events"
+
 export default function MediaCard({
   currentEvent,
   currentEvent: { name, creator, date, people, description, id },
@@ -20,45 +22,49 @@ export default function MediaCard({
   const dateType = new Date(date);
   const [hasJoined, setHasJoined] = React.useState(false);
 
+  console.log(id)
   const handleClick = (id) => {
     console.log(people);
     console.log(user.name)
     let templist = people
-    if(!hasJoined){
+    if (!hasJoined) {
       templist.push(user.name);
-    }else{
+    } else {
       const index = people.indexOf(name);
       templist.pop(index);
     }
     setHasJoined(!hasJoined)
     console.log(templist)
-    var axios = require('axios');
-    var data = JSON.stringify({
-      "name": name,
-      "creator": creator,
-      "date": date,
-      "people": templist,
-      "description": description,
-      "id": "62ca055fa7ec3b205e0c16c5"
-    });
-    
-    var config = {
-      method: 'put',
-      url: 'http://localhost:3001/api/events/62ca055fa7ec3b205e0c16c5',
-      headers: { 
-        'Content-Type': 'application/json'
-      },
-      data : data
-    };
-    
-    axios(config)
-    .then(function (response) {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-    
+
+    const changedEvent = { ...currentEvent, people: templist }
+    eventServices.update(id, changedEvent).catch(error => console.error(error))
+    // var axios = require('axios');
+    // var data = JSON.stringify({
+    //   "name": name,
+    //   "creator": creator,
+    //   "date": date,
+    //   "people": templist,
+    //   "description": description,
+    //   "id": "62ca055fa7ec3b205e0c16c5"
+    // });
+
+    // var config = {
+    //   method: 'put',
+    //   url: 'http://localhost:3001/api/events/62ca055fa7ec3b205e0c16c5',
+    //   headers: { 
+    //     'Content-Type': 'application/json'
+    //   },
+    //   data : data
+    // };
+
+    // axios(config)
+    // .then(function (response) {
+    //   console.log(JSON.stringify(response.data));
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+
 
   }
 
@@ -123,9 +129,8 @@ export default function MediaCard({
           <CardActions>
             <div className="flex justify-between w-full px-2">
               <button
-                className={`${
-                  hasJoined ? 'bg-red-500' : 'bg-blue-500'
-                } text-white py-2 px-3 rounded-md shadow-lg font-bold hover:bg-opacity-90`}
+                className={`${hasJoined ? 'bg-red-500' : 'bg-blue-500'
+                  } text-white py-2 px-3 rounded-md shadow-lg font-bold hover:bg-opacity-90`}
                 variant="outlined"
                 onClick={() => handleClick(id)}
               >
