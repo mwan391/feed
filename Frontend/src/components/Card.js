@@ -21,6 +21,7 @@ export default function MediaCard({
   const { user } = React.useContext(UserContext);
   const dateType = new Date(date);
   const [hasJoined, setHasJoined] = React.useState(false);
+  const [imgNum, setImgNum] = React.useState(Math.trunc(Math.random() * 27 - 1))
 
   console.log(id)
   const handleClick = (id) => {
@@ -43,6 +44,7 @@ export default function MediaCard({
 
   React.useEffect(() => {
     setHasJoined(people.includes(user.name));
+    //setImgNum(num);
   }, [people, user]);
 
   function stringToColor(string) {
@@ -110,7 +112,7 @@ export default function MediaCard({
         <CardMedia
           component="img"
           height="140"
-          image={url[Math.trunc(Math.random() * url.length - 1)]}
+          image={url[imgNum]}
           alt="placeholder"
         />
         <div className="p-3 flex flex-col self-end">
