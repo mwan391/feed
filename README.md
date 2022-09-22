@@ -1,1 +1,9 @@
 # Team-Beep
+<div>
+  <img width="500" alt="Screen Shot 2022-09-22 at 10 51 34 PM" src="https://user-images.githubusercontent.com/100731419/191729688-e205e5d3-d6ae-4b6e-b506-a78ed447599e.png">
+  <img width="500" alt="Screen Shot 2022-09-22 at 10 52 21 PM" src="https://user-images.githubusercontent.com/100731419/191729744-65d0dfdd-d303-4c5e-b298-a5f8eb755e98.png">
+  <img width="500" alt="Screen Shot 2022-09-22 at 10 55 32 PM" src="https://user-images.githubusercontent.com/100731419/191729788-58ed93ba-a255-4a26-9e2f-bff20ad5bf3d.png">
+  <img width="500" alt="Screen Shot 2022-09-22 at 10 55 19 PM" src="https://user-images.githubusercontent.com/100731419/191729756-da8cd636-8dee-4d86-8512-33ed25b678d2.png">
+</div>
+
+
